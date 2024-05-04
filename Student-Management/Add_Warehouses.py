@@ -42,7 +42,21 @@ def remove_warehouse():
     for warehouse in warehouses_list:
         warehouse.remove_transportation_cost(name)
 
+def display_warehouses_list():
+    for warehouse in warehouses_list:
+        print(f"Name: {warehouse.name}, Location: {warehouse.location}, Capacity: {warehouse.capacity}")
+        print("Transportation costs:")
+        for dest_warehouse, cost in warehouse.transportation_costs.items():
+            print(f"  {dest_warehouse}: {cost}")
+
+def display_transportation_network():
+    for warehouse in warehouses_list:
+        print(f"Name: {warehouse.name}, Location: {warehouse.location}, Capacity: {warehouse.capacity}")
+        print("Transportation costs:")
+        for dest_warehouse, cost in warehouse.transportation_costs.items():
+            print(f"  {dest_warehouse}: {cost}")
 def write_to_file():
+
     
     None
 
