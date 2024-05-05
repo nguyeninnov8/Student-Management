@@ -7,7 +7,10 @@ def main():
         print("1. Add new warehouse to system")
         print("2. Remove warehouse")
         print("3. Find optimal route")
-        print("4. Exit")
+        print("4. Update warehouse")
+        print("5. Display warehouse list")
+        print("6. Display Transportation network")
+        print("7. Exit")
 
         choice = input("Enter your choice (1-4): ")
 
@@ -21,6 +24,12 @@ def main():
             previous_nodes, shortest_path = FIND_OPTIMAL_ROUTE.dijkstra_algorithm(graph, start_node)
             FIND_OPTIMAL_ROUTE.print_result(previous_nodes, shortest_path, start_node, end_node)
         elif choice == "4":
+            A_R_WAREHOUSE.update_warehouse()
+        elif choice == "5":
+            A_R_WAREHOUSE.display_warehouse_list()
+        elif choice == "6":
+            A_R_WAREHOUSE.display_transportation_network()
+        elif choice == "7":
             print("Exiting the program...")
             break
         else:
