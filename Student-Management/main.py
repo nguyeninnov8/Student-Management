@@ -1,11 +1,12 @@
 import A_R_WAREHOUSE
 import FIND_OPTIMAL_ROUTE
+import GRAPH_CLASS
 
 def main():
     while True:
-        init_graph, nodes = initialize_graph()
-        init_graph = remove_duplicates(init_graph)
-        graph = Graph(nodes, init_graph)
+        init_graph, nodes = FIND_OPTIMAL_ROUTE.initialize_graph()
+        init_graph = FIND_OPTIMAL_ROUTE.remove_duplicates(init_graph)
+        graph = GRAPH_CLASS.Graph(nodes, init_graph)
         print("\n======= Supply Chain Management System =======")
         print("1. Add new warehouse to system")
         print("2. Remove warehouse")
@@ -18,21 +19,19 @@ def main():
         choice = input("Enter your choice (1-4): ")
 
         if choice == "1":
-            add_warehouse()
+            A_R_WAREHOUSE.add_warehouse()
         elif choice == "2":
-            remove_warehouse()
+            A_R_WAREHOUSE.remove_warehouse()
         elif choice == "3":
-            start_node, end_node = node_input()
-            init_graph, nodes = initialize_graph()
-            graph = Graph(nodes, init_graph)
-            previous_nodes, shortest_path = dijkstra_algorithm(graph, start_node)
-            print_result(previous_nodes, shortest_path, start_node, end_node)
+            start_node, end_node = FIND_OPTIMAL_ROUTE.node_input()
+            previous_nodes, shortest_path = FIND_OPTIMAL_ROUTE.dijkstra_algorithm(graph, start_node)
+            FIND_OPTIMAL_ROUTE.print_result(previous_nodes, shortest_path, start_node, end_node)
         elif choice == "4":
-            update_warehouse()
+            A_R_WAREHOUSE.update_warehouse()
         elif choice == "5":
-            display_warehouse_list()
+            A_R_WAREHOUSE.display_warehouse_list()
         elif choice == "6":
-            display_transportation_network()
+            A_R_WAREHOUSE.display_transportation_network()
         elif choice == "7":
             print("Exiting the program...")
             break
