@@ -71,8 +71,8 @@ def dijkstra_algorithm(graph, start_node):
     return previous_nodes, shortest_path
 
 def node_input():
-    node_start = str(input("Enter starting node"))
-    node_end = str(input("Enter ending node"))
+    node_start = str(input("Enter starting node: "))
+    node_end = str(input("Enter ending node: "))
     return node_start, node_end
 
 
