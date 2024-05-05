@@ -12,15 +12,20 @@ def remove_duplicates(graph):
         unique_graph[source] = unique_destinations
     return unique_graph
 
-init_graph = {}
-nodes = []
-for warehouse in A_R_WAREHOUSE.warehouses_list:
-    nodes.append(warehouse.name)
-    init_graph[warehouse.name] = {}
-    for dest_warehouse, cost in warehouse.transportation_costs.items():
-        init_graph[warehouse.name][dest_warehouse] = cost
+def initialize_graph():
+    init_graph = {}
+    nodes = set()  
 
-init_graph = remove_duplicates(init_graph)
+    for warehouse in A_R_WAREHOUSE.warehouses_list:
+        nodes.add(warehouse.name)  
+        init_graph[warehouse.name] = {}  
+    
+        for dest_warehouse, cost in warehouse.transportation_costs.items():
+            init_graph[warehouse.name][dest_warehouse] = cost
+            nodes.add(dest_warehouse) 
+
+    nodes = list(nodes)
+    return init_graph, nodes
 
 def print_result(previous_nodes, shortest_path, start_node, target_node):
     if shortest_path[target_node] == sys.maxsize:
@@ -64,8 +69,6 @@ def dijkstra_algorithm(graph, start_node):
         unvisited_nodes.remove(current_min_node)
     
     return previous_nodes, shortest_path
-
-graph = GRAPH_CLASS.Graph(nodes, init_graph)
 
 def node_input():
     node_start = str(input("Enter starting node"))
