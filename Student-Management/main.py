@@ -1,8 +1,10 @@
 import A_R_WAREHOUSE
 import FIND_OPTIMAL_ROUTE
 import GRAPH_CLASS
+import FILE
 
 def main():
+    FILE.read_from_file()
     while True:
         init_graph, nodes = FIND_OPTIMAL_ROUTE.initialize_graph()
         init_graph = FIND_OPTIMAL_ROUTE.remove_duplicates(init_graph)
