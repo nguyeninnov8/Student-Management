@@ -1,4 +1,5 @@
 import WAREHOUSE_CLASS
+import FILE
 import sys
 
 warehouses_list = []
@@ -13,7 +14,7 @@ def add_warehouse():
         warehouses_list.append(new_warehouse)
     else:
         for warehouse in warehouses_list:
-                choice = input(f"Is there any path to {warehouse.name}? Yes/No")
+                choice = input(f"Is there any path to {warehouse.name}? (Yes/No): ")
                 if choice == "Yes":
                     cost = int(input(f"Enter transportation from {new_warehouse.name} cost to {warehouse.name}: "))
                     new_warehouse.add_transportation_cost(warehouse.name, cost)
@@ -25,6 +26,7 @@ def add_warehouse():
                 else:
                     print("Please choose again!")
         warehouses_list.append(new_warehouse)
+    FILE.update_into_file()
     
 
 def remove_warehouse():
@@ -33,6 +35,7 @@ def remove_warehouse():
     warehouses_list = [warehouse for warehouse in warehouses_list if warehouse.name != name]
     for warehouse in warehouses_list:
         warehouse.remove_transportation_cost(name)
+    FILE.update_into_file()
 
 def update_warehouse():
     name = input("Enter the name of the warehouse to update: ")
@@ -48,6 +51,7 @@ def update_warehouse():
             break
     else:
         print("Warehouse not found!")
+    FILE.update_into_file()
 
 def display_warehouse_list():
     print("List of warehouses:")
